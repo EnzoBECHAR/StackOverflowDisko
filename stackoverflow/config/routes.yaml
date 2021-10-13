@@ -1,0 +1,27 @@
+index:
+   path: /
+   controller: App\Controller\HomeController:index
+
+register:
+  path: /register
+  controller: App\Controller\SecurityController::register
+
+login:
+  path: /login
+  controller: App\Controller\SecurityController::login
+
+logout:
+  path: /logout
+  controller: App\Controller\SecurityController::logout
+
+home:
+  path: /home
+  controller: App\Controller\HomeController:index
+
+post:
+  path: /post/{id}
+  controller: App\Controller\HomeController:post
+
+creation_post:
+  path: /creation_post
+  controller: App\Controller\HomeController:creationPost

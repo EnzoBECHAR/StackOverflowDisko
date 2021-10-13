@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+{% block body %}
+    {% for post in posts %}
+        <article>
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.content }}</p>
+            <i>{{ post.createdAt|date('d-m-Y')  }}</i>
+            <a href="{{ path('post', {'id': post.id}) }}">Detail</a>
+        </article>
+    {% endfor %}
+{% endblock %}
