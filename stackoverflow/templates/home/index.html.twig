@@ -2,15 +2,18 @@
 
 {% block title %}Hello HomeController!{% endblock %}
 {% block body %}
-    {% for post in posts %}
-        <article>
-            <h3>{{ post.title }}</h3>
-            <p>{{ post.content }}</p>
-            <i>{{ post.createdAt|date('d-m-Y')  }}</i>
-            <a href="{{ path('post', {'id': post.id}) }}">Detail</a>
-            {% if post.userId %}
-                <p>Par: {{ post.userId.username }}</p>
-            {% endif %}
-        </article>
-    {% endfor %}
+    <div class="container">
+        {% for post in posts %}
+            <article class="card mb-3 p-4" style="width: 30%; margin: auto auto">
+                <h3 class="card-title">{{ post.title }}</h3>
+                {% if post.userId %}
+                    <p class="card-subtitle">Par: {{ post.userId.username }}</p>
+                {% endif %}
+                <p class="card-text">{{ post.content|u.truncate(45, '...', false)}}</p>
+
+                <i>{{ post.createdAt|date('d-m-Y')  }}</i>
+                <a href="{{ path('post', {'id': post.id}) }}">Detail</a>
+            </article>
+        {% endfor %}
+    </div>
 {% endblock %}

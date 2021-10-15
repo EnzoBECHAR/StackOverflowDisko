@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <article>
-        <h3>{{ post.title }}</h3>
-        <p>{{ post.content }}</p>
-        <i>{{ post.createdAt|date('d-m-Y')  }}</i>
-        {% if post.userId %}
-            <p>Par: {{ post.userId.username }}</p>
-        {% endif %}
-    </article>
+    <div class="container">
+        <article>
+            <h3>{{ post.title }}</h3>
+            {% if post.userId %}
+                <h5>Par: {{ post.userId.username }}</h5>
+            {% endif %}
+            <p>{{ post.content }}</p>
+            <i>{{ post.createdAt|date('d-m-Y')  }}</i>
+        </article>
+    </div>
 {% endblock %}
