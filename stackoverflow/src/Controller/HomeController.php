@@ -37,9 +37,7 @@ class HomeController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user = $this->getDoctrine()
-                ->getRepository(User::class)
-                ->find(1);
+            $user = $this->getUser();
             $post->setUserId($user);
             $post->setCreatedAt(new \DateTimeImmutable());
             $entityManager->persist($post);

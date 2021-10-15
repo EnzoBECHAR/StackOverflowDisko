@@ -8,6 +8,9 @@
             <p>{{ post.content }}</p>
             <i>{{ post.createdAt|date('d-m-Y')  }}</i>
             <a href="{{ path('post', {'id': post.id}) }}">Detail</a>
+            {% if post.userId %}
+                <p>Par: {{ post.userId.username }}</p>
+            {% endif %}
         </article>
     {% endfor %}
 {% endblock %}
