@@ -6,8 +6,20 @@
             {% if post.userId %}
                 <h5>Par: {{ post.userId.username }}</h5>
             {% endif %}
-            <p>{{ post.content }}</p>
-            <i>{{ post.createdAt|date('d-m-Y')  }}</i>
+            <p>commentaire {{ post.content }}</p>
+            <i> post ecrit le {{ post.createdAt|date('d-m-Y')  }}</i>
         </article>
+        <div class="comment">
+            {% for comment in post.comments %}
+            <div class="row">
+                <div class="col-3">
+                    {{ comment.corps }}
+                </div>
+                <div class="col">
+                    par {{ comment.userId.username }} le {{ comment.createdAt|date('d-m-Y')  }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

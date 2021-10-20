@@ -22,7 +22,6 @@ class HomeController extends AbstractController
     }
 
     public function post(Post $post){
-
         return $this->render('post/post.html.twig', [
             'post' => $post
         ]);
