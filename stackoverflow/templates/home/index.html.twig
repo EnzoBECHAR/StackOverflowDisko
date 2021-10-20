@@ -15,5 +15,6 @@
                 <a href="{{ path('post', {'id': post.id}) }}">Detail</a>
             </article>
         {% endfor %}
+        {{ knp_pagination_render(posts) }}
     </div>
 {% endblock %}
