@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Post;
 use App\Entity\User;
+use App\Form\CommenType;
 use App\Form\CreationPostType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,9 +23,25 @@ class HomeController extends AbstractController
         ]);
     }
 
-    public function post(Post $post){
+    public function post(Post $post, Request $request){
+        $comment = new Comment();
+        $form = $this->createForm(CommenType::class, $comment);
+
+        $form->handleRequest($request);
+        $entityManager = $this->getDoctrine()->getManager();
+
+
+        if($form->isSubmitted() && $form->isValid()){
+            $comment->setCreatedAt(new \DateTimeImmutable())
+                    ->setPostId($post)
+                    ->setUserId($this->getUser());
+            $entityManager->persist($comment);
+            $entityManager->flush();
+            return $this->redirectToRoute('post', ['id' => $post->getId()]);
+        }
         return $this->render('post/post.html.twig', [
-            'post' => $post
+            'post' => $post,
+            'commentForm' => $form->createView()
         ]);
     }
 

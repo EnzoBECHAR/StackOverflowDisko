@@ -9,6 +9,7 @@
             <p>commentaire {{ post.content }}</p>
             <i> post ecrit le {{ post.createdAt|date('d-m-Y')  }}</i>
         </article>
+        <h1>Commentaires</h1>
         <div class="comment">
             {% for comment in post.comments %}
             <div class="row">
@@ -20,6 +21,13 @@
                 </div>
             </div>
             {% endfor %}
+            <div>Nouveau commentaire</div>
+
+            {% if app.user %}
+            {{ form(commentForm) }}
+            {% else %}
+            <a href="{{ path('login') }}">Pour commenter connecter vous</a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

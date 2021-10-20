@@ -2,6 +2,10 @@
 
 {% block body %}
     <div class="container">
-        {{ form(form) }}
+        {% if app.user %}
+            {{ form(form) }}
+        {% else %}
+            <a href="{{ path('login') }}">Pour commenter connecter vous</a>
+        {% endif %}
     </div>
 {% endblock %}
